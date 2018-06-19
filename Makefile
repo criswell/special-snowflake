@@ -1,4 +1,4 @@
-BUILD=python jinja_build/jinja_build.py
+BUILD=pipenv run python jinja_build/jinja_build.py
 
 ALL_INC_DIRS=main/,main/css/,main/js/,main/job_exp/,main/oss_exp/,main/templates/
 
@@ -11,7 +11,7 @@ $(OUTPUT): $(START_SRC)
 	$(BUILD) $(START_SRC) . $(ALL_INC_DIRS) > $(OUTPUT)
 
 test: $(OUTPUT)
-	./validate/html5check.py --encoding=utf-8 output/index.html
+	pipenv run ./validate/html5check.py --encoding=utf-8 output/index.html
 
 spell: $(OUTPUT)
 	links output/index.html -dump | aspell list --personal=./.aspell.en.pws
